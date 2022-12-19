@@ -1,11 +1,12 @@
-const PRE = "--duo";
+import { PREFIX } from "./constants";
+const PRE = `--${PREFIX}`;
 
 function delPre(name, fullDel = false) {
 	const isMatch = name.slice(0, PRE.length) === PRE;
 	return isMatch ? name.substring(fullDel ? PRE.length : 2) : name;
 }
 
-function transform(obj, pre = PRE) {
+export function transform(obj, pre = PRE) {
 	const res = {
 		// 浅色
 		default: {},
@@ -30,4 +31,3 @@ function transform(obj, pre = PRE) {
 	}
 	return res;
 }
-module.exports.transform = transform;

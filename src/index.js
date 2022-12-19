@@ -1,18 +1,21 @@
-const plugin = require("tailwindcss/plugin");
-const { colorVars } = require("./modules/color-vars");
-const vars = plugin.withOptions(
+import plugin from "tailwindcss/plugin";
+import { fontSize } from "./modules/font-size";
+import { colorVars } from "./modules/color-vars";
+const config = plugin.withOptions(
 	(options) => {
-		return ({ addBase }) => {
+		return ({ addBase, addUtilities }) => {
 			addBase({
 				":root": colorVars.default,
-				"html.dark": {
-					":root": colorVars.dark
-				}
+				"html.dark": colorVars.dark,
+			});
+			addUtilities({
+				...fontSize,
 			});
 		};
 	},
 	() => {
 		return {
+			safelist: [".dark"],
 			theme: {
 				extend: {
 					colors: colorVars.theme,
@@ -21,4 +24,4 @@ const vars = plugin.withOptions(
 		};
 	}
 );
-module.exports = vars;
+module.exports = config;

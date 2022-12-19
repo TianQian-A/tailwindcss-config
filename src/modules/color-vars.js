@@ -1,6 +1,6 @@
-const { transform } = require("../helpers/transform");
+import { transform } from "../helpers/transformVars";
 
-const colorVars = {
+const colorVarsObj = {
 	"text-color": {
 		// 一级内容颜色
 		primary: {
@@ -38,4 +38,4 @@ const colorVars = {
 		},
 	},
 };
-module.exports.colorVars = transform(colorVars);
+export const colorVars = transform(colorVarsObj);
